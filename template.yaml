@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-s3-img
+
+  Sample SAM Template for sam-s3-img
+  
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  GetUploadedObj:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: api/
+      Handler: retrieveObj.GetObjHandler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      Events:
+        GetObjectEvent:
+          Type: Api
+          Properties:
+            Path: /getOneImg/{key}
+            Method: GET
+
+  PutUploadedObj:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: api/
+      Handler: uploadObj.UploadObjHandler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      Events:
+        PutObjectEvent:
+          Type: Api
+          Properties:
+            Path: /putOneImg
+            Method: GET
+
+  ListUploadedObj:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: api/
+      Handler: listObj.ListObjHandler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      Events:
+        ListObjectEvent:
+          Type: Api
+          Properties:
+            Path: /listAllImg
+            Method: GET
+
+Outputs:
+  WebEndpoint:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
