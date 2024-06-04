@@ -114,9 +114,11 @@ See the [AWS SAM developer guide](https://docs.aws.amazon.com/serverless-applica
 
 Next, you can use AWS Serverless Application Repository to deploy ready to use Apps that go beyond hello world samples and learn how authors developed their applications: [AWS Serverless Application Repository main page](https://aws.amazon.com/serverless/serverlessrepo/)
 
-
-### install aws-cli
-### install sam-cli
+### Install utlils 
+```bash
+install aws-cli
+install sam-cli
+```
 
 ### create aws account. -> iamrole.
 ### provide permission : s3 , lambda , cloudformation
@@ -125,18 +127,25 @@ Next, you can use AWS Serverless Application Repository to deploy ready to use A
 ### sam deploy : to deploy.
 
 ### locally invoke lamdbda function
+```bash
 sam invoke local <Lambda function name under Resources>
+```
 
 ### create a bucket
+```bash
 s3 mb s3://<your bucket name>
+```
 
 ### install sharp - jimp - imageResizer.
+```bash
 npm install --arch=x64 --platform=linux sharp
 npm install jimp
+```
 
 ### Bucket policy to enable everyone to read all objects in the S3 bucket.  Be sure to update Bucket-Name.
 
 ### update bucket policy in s3
+```bash
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -149,10 +158,11 @@ npm install jimp
         }
     ]
 }
+```
 
 ### JSON CORS policy for the cross-origin bucket.  Update the text in red, being sure to not leave a slash after the .com.
-
-### update CORS policy in s3
+update CORS policy in s3
+```bash
 [
     {
         "AllowedHeaders": [
@@ -170,3 +180,4 @@ npm install jimp
         "ExposeHeaders": []
     }
 ]
+```
